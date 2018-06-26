@@ -34,7 +34,7 @@ dx-docker run -v $HOME:/data mokaguys/albacore:v2.2 read_fast5_basecaller.py \
 # First sections of samplesheet aren't required here, so set a flag (reached_data_section) that allows us to 
 # skip over first sections. 
 reached_data_section=false
-# Read through samplesheet line by line
+# Read through samplesheet line by line. Line is read into $samplesheet_line variable.
 while read samplesheet_line; do
     # If the reached_data_section flag is true, then this line contains sample info
     if $reached_data_section; then
