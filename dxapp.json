@@ -1,0 +1,93 @@
+{
+  "name": "albacore_1D_barcoded_v1.0",
+  "title": "albacore_1D_barcoded_v1.0",
+  "summary": "Basecalls and demultiplexes raw Oxford Nanopore 1D fast5 files",
+  "dxapi": "1.0.0",
+  "properties": {
+    "github release": "v1.0"
+  },
+  "inputSpec": [
+    {
+      "name": "fast5",
+      "label": "fast5 files",
+      "class": "file",
+      "patterns": [
+        "*.tar.gz"
+      ],
+      "help": ".tar.gz archive of fast5 files"
+    },
+    {
+      "name": "samplesheet",
+      "label": "SampleSheet",
+      "class": "file",
+      "patterns": [
+        "*.csv"
+      ],
+      "help": "Sample sheet for demultiplexing"
+    },
+    {
+      "name": "flowcell",
+      "label": "Flowcell",
+      "class": "string",
+      "default": "FLO-MIN106",
+      "help": "Flow cell version used e.g. FLO-MIN107"
+    },
+    {
+      "name": "sequencing_kit",
+      "label": "Sequencing kit",
+      "class": "string",
+      "default": "SQK-LSK108",
+      "help": "Sequencing kit version used e.g. SQK-LSK108"
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "fastq_files",
+      "label": "fastq files",
+      "class": "array:file",
+      "patterns": [
+        "*.fastq.gz"
+      ],
+      "help": "Demultiplexed gzipped fastq files"
+    },
+    {
+      "name": "albacore_output_all",
+      "label": "Albacore complete output",
+      "class": "file",
+      "patterns": [
+        "*.tar.gz"
+      ],
+      "help": "Full Albacore output"
+    } 
+  ],
+  "runSpec": {
+    "interpreter": "bash",
+    "file": "src/albacore_1D_barcoded.sh",
+    "assetDepends": [
+      {
+        "project": "project-ByfFPz00jy1fk6PjpZ95F27J",
+        "folder": "/Apps/Docker",
+        "name": "mokaguys/albacore:v2.2",
+        "version": "0.0.1"
+      }
+    ],
+    "systemRequirementsByRegion": {
+      "aws:us-east-1": {
+        "main": {
+          "instanceType": "mem1_ssd2_x8"
+        }
+      }
+    },
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd2_x8"
+      }
+    },
+    "distribution": "Ubuntu",
+    "release": "14.04"
+  },
+  "access": {
+    "allProjects": "VIEW"
+  }
+}
+
