@@ -14,6 +14,8 @@ tar zxf $fast5_name
 mkdir -p $HOME/albacore_output $HOME/out/fastq_files $HOME/out/albacore_output_all
 
 # Run Albacore
+# --reads_per_fastq_batch specifies how many reads go into each fastq. Setting to 0 means all reads go into single fastq.
+# --barcoding tells albacore to also perform demultiplexing
 dx-docker run -v $HOME:/data mokaguys/albacore:v2.2 read_fast5_basecaller.py \
     --input /data/ \
     --worker_threads 11 \
