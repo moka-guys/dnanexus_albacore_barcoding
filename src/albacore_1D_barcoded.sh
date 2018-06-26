@@ -41,7 +41,7 @@ while read samplesheet_line; do
         # sample name in is in second field of csv, and barcode is in fifth field
         sample_name=$(echo $samplesheet_line | cut -d ',' -f2)
         barcode=$(echo $samplesheet_line | cut -d ',' -f5)
-        # Check file exists. (If it doesn't for some reason, skip to prevent whole run from failing)
+        # Check file exists. (If the file isn't there for some reason, skip to prevent whole run from failing)
         if [ -f $HOME/albacore_output/workspace/pass/${barcode}/*.fastq ]; then
             # Copy the fastq from the matching barcode folder in albacore output, and rename using the sample name 
             cp $HOME/albacore_output/workspace/pass/${barcode}/*.fastq $HOME/out/fastq_files/${sample_name}.fastq
